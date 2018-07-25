@@ -62,7 +62,12 @@ def check_site(url, selector, attribute, index, format, debug):
         if debug:
             print("Comparsion is: ", query_str, "==", formated_str)
 
-        return not (query_str == formated_str)
+        state = not (query_str == formated_str)
+
+        if state:
+            return True, query_str
+        else:
+            return False, ""
 
 if __name__ == "__main__":
     args = parse_args()
