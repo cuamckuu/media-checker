@@ -2,19 +2,23 @@
 
 I'm a big fan of comics, manga and serials, but when they accumulated a lot, it became difficult to follow the release of new series, so I decided to write a program that will do it for me.
 
-Now it is a Python3 script and I use it from bash, there are some disadvantages now, so I am going to write GUI.
+Now there is two versions:
+
+* Python3 script and I use it from bash, there are some disadvantages now, so I am going to write GUI.
+* JavaScript Chrome extension
 
 # Dependencies
 
-Script needs BeautifulSoup, you can install it with:
+Python script needs BeautifulSoup, you can install it with:
 
 ```
 pip3 install beautifulsoup4
 ```
 
 # Usage
+Extension usage is trivial, just add things to monitor at options page and press enxtension button.
 
-Here is example of usage with Bash script, that checks for new series in four different sites, so it's easy to adapt for still any site.
+Usage from Python is more comples. Here is example of usage with Bash script, that checks for new series in four different sites, so it's easy to adapt for still any site.
 
 ```bash
 #!/bin/bash
