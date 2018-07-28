@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var myQuery1 = {
+/*    var myQuery1 = {
         name: "Tower of God",
         url: "https://read.yagami.me/read/tower_of_god/2/309/",
         selector: ".dropdown_chapter > li > a",
@@ -16,12 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         index: -1,
         format: "{url}[:]"
     };
-
-    var queries = [myQuery1, myQuery2];
-    queries.forEach(drawQuery);
-    var form = drawInput();
-
-    form.onSubmit(function () { alert(1); });
+*/
 
     function drawQuery(query) {
         var block = document.createElement("div");
@@ -29,16 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         var res = "";
         for(key in query){
-            var bold = document.createElement("b");
-            bold.innerHTML = key;
-
-            res += bold.outerHTML + ": " + query[key] + "<br>";
+            res += key.bold() + ": " + query[key] + "<br>";
         }
 
         block.innerHTML = res;
 
         var background = document.getElementsByClassName("background")[0];
-        background.prepend(block);
+        background.append(block);
     }
 
     function drawInput() {
@@ -74,5 +66,33 @@ document.addEventListener("DOMContentLoaded", function () {
         return form;
     }
 
+    function saveQuery(event) {
+        var form = event.target;
+        var formData = {};
+        for(var i = 0; i < form.length - 1; i++){
+            var input = form[i];
+            formData[input.title] = (input.value == 0?input.placeholder:input.value);
+        }
+
+        queries.push(formData);
+        localStorage["queries"] = JSON.stringify(queries);
+    };
+
+    function getQueries() {
+        var queries = JSON.parse(localStorage["queries"]);
+        return queries;
+    }
+
+    function initLocalStorage() {
+        if(localStorage["queries"] == "" || localStorage["queries"] === undefined){
+            localStorage["queries"] = "[]";
+        }
+    }
+
+    initLocalStorage();
+    var queries = getQueries();
+    queries.forEach(drawQuery);
+    var form = drawInput();
+    form.addEventListener("submit", saveQuery);
 
 });

@@ -1,27 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var myQuery1 = {
-        name: "Tower of God",
-        url: "https://read.yagami.me/read/tower_of_god/2/309/",
-        selector: ".dropdown_chapter > li > a",
-        attribute: "href",
-        index: 0,
-        format: "{url}[:]"
-    };
-
-    var myQuery2 = {
-        name: "OnePiece",
-        url: "https://mangaclub.ru/manga/view/156-one-piece/v91-c912.html#01",
-        selector: ".manga-thumbs-chapters > a",
-        attribute: "href",
-        index: -1,
-        format: "{url}[:]"
-    };
-
-    check_site(myQuery1);
-    check_site(myQuery2);
 
     function check_site(query){
-        getHTML(query.url);
 		function getHTML(url) {
 			var xhr = new XMLHttpRequest();
 
@@ -88,5 +67,27 @@ document.addEventListener("DOMContentLoaded", function () {
             document.body.appendChild(block);
         }
 
+        getHTML(query.url);
     }
+
+    var myQuery1 = {
+        name: "Tower of God",
+        url: "https://read.yagami.me/read/tower_of_god/2/309/",
+        selector: ".dropdown_chapter > li > a",
+        attribute: "href",
+        index: 0,
+        format: "{url}[:]"
+    };
+
+    var myQuery2 = {
+        name: "OnePiece",
+        url: "https://mangaclub.ru/manga/view/156-one-piece/v91-c912.html#01",
+        selector: ".manga-thumbs-chapters > a",
+        attribute: "href",
+        index: -1,
+        format: "{url}[:]"
+    };
+
+    check_site(myQuery1);
+    check_site(myQuery2);
 });
