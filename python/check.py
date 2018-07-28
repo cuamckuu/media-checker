@@ -17,7 +17,7 @@ def parse_args():
                         help="Enter element's attribute to compare with.")
 
     parser.add_argument("-i", "--index", dest="index", type=int, default=-1,
-                        help="Enter element's index to compate with.")
+                        help="Enter element's index to compare with.")
 
     parser.add_argument("-f", "--format", dest="format",
                         help="Enter format of string to compare with index-th element, you can use '{url}' with Pythonic slices like '[start:end]'")
@@ -51,7 +51,7 @@ def check_site(url, selector, attribute, index, format, debug):
     except:
         return "[Error] Can't load site."
     else:
-        query_str = links[compare_index]
+        query_str = links[index]
         if attribute == "text":
             query_str = query_str.text
         else:

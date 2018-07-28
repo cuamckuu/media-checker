@@ -1,0 +1,24 @@
+[{"name": "OnePiece",
+"url": "https://mangaclub.ru/manga/view/156-one-piece/v91-c912.html#01",
+"selector": ".manga-thumbs-chapters > a",
+"attribute": "href"},
+
+{"name": "Tower of God",
+"url": "https://read.yagami.me/read/tower_of_god/2/310/",
+"selector": ".dropdown_chapter > li > a",
+"attribute": "href",
+"index": 0},
+
+{"name": "100 Bullets",
+"url": "http://unicomics.ru/comics/online/100-bullets-002/",
+"selector": "#modal a",
+"attribute": "href",
+"index": -2,
+"format": "{url}[10:]"},
+
+{"name": "Preacher",
+"url": "https://www.lostfilm.tv/series/Preacher/seasons/",
+"selector": ".beta",
+"attribute": "text",
+"index": 1,
+"format": "3 сезон 5 серия"}]

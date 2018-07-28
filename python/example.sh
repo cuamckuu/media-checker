@@ -27,4 +27,4 @@ echo -n "New Preacher: "
     -s ".beta"\
     -a "text" \
     -i "1" \
-    -f "3 сезон 4 серия"
+    -f "3 сезон 5 серия"
