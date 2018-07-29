@@ -1,3 +1,5 @@
+"use strict";
+
 document.addEventListener("DOMContentLoaded", function () {
 /*    var myQuery1 = {
         name: "Tower of God",

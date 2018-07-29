@@ -1,5 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
+"use strict";
 
+document.addEventListener("DOMContentLoaded", function () {
     function check_site(query){
 		function getHTML(url) {
 			var xhr = new XMLHttpRequest();
@@ -68,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         getHTML(query.url);
-    }
+    };
 
     var myQuery1 = {
         name: "Tower of God",
