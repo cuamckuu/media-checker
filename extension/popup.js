@@ -1,68 +1,64 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", function () {
-    function check_site(query){
-		function getHTML(url) {
-			var xhr = new XMLHttpRequest();
+    const check_site = function (query){
+		const getHTML = function (url) {
+			let xhr = new XMLHttpRequest();
 
 			xhr.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
-                    var html = document.createElement("html");
+                    let html = document.createElement("html");
 					html.innerHTML = this.responseText;
                     parseHTML(html);
 				}
-
 			};
 
 			xhr.open("GET", url, true);
 			xhr.send();
 		}
 
-        function get_formated_str(url, format) {
-            var regex = /\{url\}\[(-?\d*)?:(-?\d*)?\]/;
-            var arr = format.match(regex);
+        const get_formated_str = function (url, format) {
+            const regex = /\{url\}\[(-?\d*)?:(-?\d*)?\]/;
+            let [_, start, end] = format.match(regex);
 
-            var start = Number(arr[1]) || 0;
-            while(start < 0) {
+            start = Number(start) || 0;
+            while (start < 0) {
                 start += url.length + 1;
             }
 
-            var end = Number(arr[2]) || url.length;
-            while(end < 0) {
+            end = Number(end) || url.length;
+            while (end < 0) {
                 end += url.length + 1;
             }
 
-            format = format.replace(regex, url.substring(start, end))
-            return format;
+            return format.replace(regex, url.substring(start, end));
         }
 
-        function parseHTML(html) {
-            var arr = html.querySelectorAll(query.selector);
-            while(query.index < 0) {
+        const parseHTML = function (html) {
+            const arr = html.querySelectorAll(query.selector);
+            while (query.index < 0) {
                 query.index += arr.length;
             }
 
-            var query_str = arr[query.index][query.attribute];
-            var formated_str = get_formated_str(query.url, query.format);
-            console.log("Current compare to " + query.name + ": "
-                        + query_str + " !== " + formated_str);
-            var state = query_str !== formated_str;
+            const query_str = arr[query.index][query.attribute];
+            const formated_str = get_formated_str(query.url, query.format);
 
+            console.log(`Current compare for ${query.name}:
+                        ${query_str} !==  ${formated_str}`);
+
+            const state = (query_str !== formated_str);
             createDiv(state);
         }
 
-        function createDiv(state) {
-            var block = document.createElement("div");
+        const createDiv = function (state) {
+            let block = document.createElement("div");
             block.className = "entry";
 
-            var link = document.createElement("a");
+            let link = document.createElement("a");
             link.href = query.url;
-            if(state) {
-                link.innerHTML = "<span class='true'>" + state + "</span>";
-            }else{
-                link.innerHTML = "<span class='false'>" + state + "</span>";
-            }
-            block.innerHTML = "<b>" + query.name + "</b>: ";
+            link.innerHTML = `<span class='${state}'> ${state} </span>`;
+
+            block.innerHTML = `${query.name.bold()}: `;
             block.appendChild(link);
 
             document.body.appendChild(block);

@@ -20,31 +20,31 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 */
 
-    function drawQuery(query) {
-        var block = document.createElement("div");
+    const drawQuery = function (query) {
+        let block = document.createElement("div");
         block.className = "note";
 
-        var res = "";
-        for(key in query){
-            res += key.bold() + ": " + query[key] + "<br>";
+        let res = "";
+        for (key in query) {
+            res += `${key.bold()}: ${query[key]} <br>`;
         }
 
         block.innerHTML = res;
 
-        var background = document.getElementsByClassName("background")[0];
+        let background = document.getElementsByClassName("background")[0];
         background.append(block);
     }
 
-    function drawInput() {
-        var block = document.createElement("div");
+    const drawInput = function () {
+        let block = document.createElement("div");
         block.className = "note";
 
-        var form = document.createElement("form");
+        let form = document.createElement("form");
         form.id = "form";
         block.append(form);
 
-        function createTextInput(form, title, placeholder) {
-            var input = document.createElement("input");
+        const createTextInput = function (form, title, placeholder) {
+            let input = document.createElement("input");
             input.type = "text";
             input.title = title;
             input.placeholder = placeholder;
@@ -58,43 +58,47 @@ document.addEventListener("DOMContentLoaded", function () {
         createTextInput(form, "index", "Index");
         createTextInput(form, "format", "Format");
 
-        var submit = document.createElement("input");
+        let submit = document.createElement("input");
         submit.type = "submit";
         form.append(submit);
 
-        var background = document.getElementsByClassName("background")[0];
+        let background = document.getElementsByClassName("background")[0];
         background.append(block);
 
         return form;
     }
 
-    function saveQuery(event) {
-        var form = event.target;
-        var formData = {};
-        for(var i = 0; i < form.length - 1; i++){
-            var input = form[i];
-            formData[input.title] = (input.value == 0?input.placeholder:input.value);
+    const saveQuery = function (event) {
+        const form = event.target;
+        let formData = {};
+        for (let i = 0; i < form.length - 1; i++) {
+            const input = form[i];
+            formData[input.title] = (input.value == 0?
+                                        input.placeholder:
+                                        input.value);
         }
 
         queries.push(formData);
         localStorage["queries"] = JSON.stringify(queries);
     };
 
-    function getQueries() {
-        var queries = JSON.parse(localStorage["queries"]);
-        return queries;
+    const getQueries = function () {
+        return JSON.parse(localStorage["queries"]);
     }
 
-    function initLocalStorage() {
-        if(localStorage["queries"] == "" || localStorage["queries"] === undefined){
+    const initLocalStorage = function () {
+        if (localStorage["queries"] == false ||
+            localStorage["queries"] === undefined)
+        {
             localStorage["queries"] = "[]";
         }
     }
 
     initLocalStorage();
-    var queries = getQueries();
-    queries.forEach(drawQuery);
-    var form = drawInput();
-    form.addEventListener("submit", saveQuery);
 
+    let queries = getQueries();
+    queries.forEach(drawQuery);
+
+    let form = drawInput();
+    form.addEventListener("submit", saveQuery);
 });
