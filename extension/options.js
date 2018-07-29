@@ -25,9 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
         block.className = "note";
 
         let res = "";
-        for (key in query) {
+        Object.keys(query).forEach((key) => {
             res += `${key.bold()}: ${query[key]} <br>`;
-        }
+        });
 
         block.innerHTML = res;
 
@@ -70,27 +70,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const saveQuery = function (event) {
         const form = event.target;
+
         let formData = {};
-        for (let i = 0; i < form.length - 1; i++) {
-            const input = form[i];
-            formData[input.title] = (input.value == 0?
-                                        input.placeholder:
-                                        input.value);
-        }
+        Object.values(form).forEach( (input) => {
+            formData[input.title] = input.value.length === 0?
+                                    input.placeholder:
+                                    input.value;
+        });
 
         queries.push(formData);
-        localStorage["queries"] = JSON.stringify(queries);
+        localStorage.queries = JSON.stringify(queries);
     };
 
     const getQueries = function () {
-        return JSON.parse(localStorage["queries"]);
+        return JSON.parse(localStorage.queries);
     }
 
     const initLocalStorage = function () {
-        if (localStorage["queries"] == false ||
-            localStorage["queries"] === undefined)
-        {
-            localStorage["queries"] = "[]";
+        if (!!localStorage.queries === false) {
+            localStorage.queries = "[]";
         }
     }
 
@@ -102,3 +100,4 @@ document.addEventListener("DOMContentLoaded", function () {
     let form = drawInput();
     form.addEventListener("submit", saveQuery);
 });
+

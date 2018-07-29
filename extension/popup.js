@@ -1,12 +1,12 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", function () {
-    const check_site = function (query){
+    const checkSite = function (query){
 		const getHTML = function (url) {
 			let xhr = new XMLHttpRequest();
 
 			xhr.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
+				if (this.readyState === 4 && this.status === 200) {
                     let html = document.createElement("html");
 					html.innerHTML = this.responseText;
                     parseHTML(html);
@@ -17,21 +17,14 @@ document.addEventListener("DOMContentLoaded", function () {
 			xhr.send();
 		}
 
-        const get_formated_str = function (url, format) {
+        const getFormatedString = function (url, format) {
             const regex = /\{url\}\[(-?\d*)?:(-?\d*)?\]/;
             let [_, start, end] = format.match(regex);
 
             start = Number(start) || 0;
-            while (start < 0) {
-                start += url.length + 1;
-            }
+            end   = Number(end)   || url.length;
 
-            end = Number(end) || url.length;
-            while (end < 0) {
-                end += url.length + 1;
-            }
-
-            return format.replace(regex, url.substring(start, end));
+            return format.replace(regex, url.slice(start, end));
         }
 
         const parseHTML = function (html) {
@@ -41,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             const query_str = arr[query.index][query.attribute];
-            const formated_str = get_formated_str(query.url, query.format);
+            const formated_str = getFormatedString(query.url, query.format);
 
             console.log(`Current compare for ${query.name}:
                         ${query_str} !==  ${formated_str}`);
@@ -85,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
         format: "{url}[:]"
     };
 
-    check_site(myQuery1);
-    check_site(myQuery2);
+    checkSite(myQuery1);
+    checkSite(myQuery2);
 });
+
