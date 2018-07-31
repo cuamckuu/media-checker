@@ -1,5 +1,5 @@
 .true {
-    color: lightgreen;
+    color: green;
 }
 
 .false {
@@ -36,13 +36,6 @@ body {
     margin: 0 auto;
 }
 
-.logo{
-    text-align: center;
-    text-shadow: 4px 3px 6px rgba(0, 0, 0, 0.4);
-    color: rgb(130, 77, 200);
-	font-size: 35px;
-}
-
 .note {
     font-size: 16pt;
     background: #f9f9f9;
@@ -57,7 +50,6 @@ body {
 .button {
     float: right;
     display: inline-block;
-
 	background-color: rgb(130, 77, 200);
     border: none;
     color: white;
@@ -69,6 +61,17 @@ body {
 .button:hover {
     cursor: pointer;
     background-color: rgb(134, 10, 138);
+}
+
+.value{
+    border-bottom: solid 2px transparent;
+}
+
+.value:hover {
+    cursor: pointer;
+    color: blue;
+    border-bottom: solid 2px blue;
+    transition: all 0.5s ease-in;
 }
 
 input[type=text] {

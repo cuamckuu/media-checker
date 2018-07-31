@@ -27,10 +27,14 @@ document.addEventListener("DOMContentLoaded", function () {
         location.reload();
     }
 
-    const changeValue = function (queries, index, key, old_val){
+    const changeQueryValue = function (queries, index, key, old_val){
         const new_val = prompt("Edit value: ", old_val);
 
-        if (new_val === false || new_val === old_val) return;
+        const isValid = (val) => {
+            return !(val === null || val === old_val || val.trim().length === 0);
+        };
+
+        if (!isValid(new_val)) return;
         queries[index][key] = new_val;
 
         localStorage.queries = JSON.stringify(queries);
@@ -60,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
             val_el.innerHTML = query[key];
             res.append(val_el);
             val_el.addEventListener("click", (event) => {
-                changeValue(arr, index, key, query[key]);
+                changeQueryValue(arr, index, key, query[key]);
             });
 
             const br_el = document.createElement("br");
