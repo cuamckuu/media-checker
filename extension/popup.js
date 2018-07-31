@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return JSON.parse(localStorage.queries);
     }
 
+    // TODO: Some kind of validateQuery(query) func
     let queries = getQueries();
     queries.forEach((query, i, arr) => {
         checkSite(query);

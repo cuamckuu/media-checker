@@ -4,8 +4,10 @@ I'm a big fan of comics, manga and serials, but when they accumulated a lot, it 
 
 Now there is two versions:
 
-* Python3 script and I use it from bash, there are some disadvantages now, so I am going to write GUI.
+* Python3 script i
 * JavaScript Chrome extension
+
+![Extension Screenshoot](./extension/screenshoot.png)
 
 # Dependencies
 
@@ -16,9 +18,9 @@ pip3 install beautifulsoup4
 ```
 
 # Usage
-Extension usage is trivial, just add things to monitor at options page and press enxtension button.
+Extension usage is trivial, just add things to monitor at options page and press enxtension button to check your queries.
 
-Usage from Python is more comples. Here is example of usage with Bash script, that checks for new series in four different sites, so it's easy to adapt for still any site.
+Usage from Python is more complex. Here is example of usage with Bash script, that checks for new series in four different sites, so it's easy to adapt for still any site.
 
 ```bash
 #!/bin/bash

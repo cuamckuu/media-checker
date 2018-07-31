@@ -17,7 +17,6 @@ h1 {
 }
 
 body {
-	margin: 0;
     min-width: 250px;
     min-height: 100px;
     padding: 10px 10px;
@@ -27,21 +26,24 @@ body {
     font-size: 16pt;
 }
 
-.background{
+.background, header{
+    margin: auto;
     display: block;
     position: relative;
-    margin: 0 auto;
+    width: 50%;
 }
 
 .note {
     font-size: 16pt;
     background: #f9f9f9;
-    max-width: 900px;
+    max-width: 700px;
     display:block;
-    border-left: 15px solid rgb(130, 77, 200);
+    border-left: 10px solid rgb(130, 77, 200);
     margin: 25px 15px;
-    padding: 10px 15px 35px 10px;
+    padding: 10px 10px 15px 10px;
     box-shadow: 0px 3px 8px 2px #ccc;
+    overflow-x: hidden;
+    word-wrap: break-word;
 }
 
 .button {
@@ -53,6 +55,7 @@ body {
     padding: 5px 15px;
     transition-duration: 0.2s;
     font-size: 14px;
+    border-radius: 3px;
 }
 
 .button:hover {
@@ -73,13 +76,14 @@ body {
 
 input[type=text] {
     font-size: 14px;
-    display:block;
+    display: block;
     border: solid 2px gray;
-    margin: 5px 0px;
+    margin: 5px 0;
     padding: 5px 5px;
     width: 100%;
     max-width: 100%;
     border-radius: 3px;
+    box-sizing: border-box;
 }
 
 input[type=text]:focus {
