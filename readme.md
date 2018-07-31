@@ -4,7 +4,7 @@ I'm a big fan of comics, manga and serials, but when they accumulated a lot, it 
 
 Now there is two versions:
 
-* Python3 script i
+* Python3 script
 * JavaScript Chrome extension
 
 ![Extension Screenshoot](./extension/screenshoot.png)
