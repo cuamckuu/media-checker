@@ -52,7 +52,7 @@ def check_site(url, selector, attribute, index, format, debug):
         return "[Error] Can't load site."
     else:
         query_str = links[index]
-        if attribute == "text":
+        if attribute == "innerHTML":
             query_str = query_str.text
         else:
             query_str = query_str[attribute]

@@ -14,7 +14,7 @@ def query_to_args(query):
     args.append(query["selector"])
     args.append(query["attribute"])
     args.append(query.get("index", -1))
-    args.append(query.get("format", "{url}[:]"))
+    args.append(query.get("format", None))
     args.append(query.get("debug", False))
 
     return args

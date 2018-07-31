@@ -4,7 +4,7 @@
 "attribute": "href"},
 
 {"name": "Tower of God",
-"url": "https://read.yagami.me/read/tower_of_god/2/310/",
+"url": "https://read.yagami.me/read/tower_of_god/2/311/",
 "selector": ".dropdown_chapter > li > a",
 "attribute": "href",
 "index": 0},
@@ -19,6 +19,6 @@
 {"name": "Preacher",
 "url": "https://www.lostfilm.tv/series/Preacher/seasons/",
 "selector": ".beta",
-"attribute": "text",
+"attribute": "innerHTML",
 "index": 1,
 "format": "3 сезон 5 серия"}]

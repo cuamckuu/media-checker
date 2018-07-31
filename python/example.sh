@@ -25,6 +25,6 @@ echo -n "New Preacher: "
 ./check.py \
     -u "https://www.lostfilm.tv/series/Preacher/seasons/" \
     -s ".beta"\
-    -a "text" \
+    -a "innerHTML" \
     -i "1" \
     -f "3 сезон 5 серия"
