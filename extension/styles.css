@@ -1,3 +1,8 @@
+.true, .false {
+    float: right;
+    text-decoration: underline;
+}
+
 .true {
     color: green;
 }
@@ -11,19 +16,11 @@ h1 {
     padding: 5px 10px;
 }
 
-*
-{
-	margin: 0;
-	padding: 0;
-	border: 0;
-	-webkit-box-sizing: border-box;
-	   -moz-box-sizing: border-box;
-	        box-sizing: border-box;
-}
-
 body {
-    min-width: 400px;
-    min-height: 200px;
+	margin: 0;
+    min-width: 250px;
+    min-height: 100px;
+    padding: 10px 10px;
 }
 
 .entry{

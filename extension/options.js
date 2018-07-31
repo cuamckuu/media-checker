@@ -1,26 +1,10 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", function () {
-/*    var myQuery1 = {
-        name: "Tower of God",
-        url: "https://read.yagami.me/read/tower_of_god/2/309/",
-        selector: ".dropdown_chapter > li > a",
-        attribute: "href",
-        index: 0,
-        format: "{url}[:]"
-    };
-
-    var myQuery2 = {
-        name: "OnePiece",
-        url: "https://mangaclub.ru/manga/view/156-one-piece/v91-c912.html#01",
-        selector: ".manga-thumbs-chapters > a",
-        attribute: "href",
-        index: -1,
-        format: "{url}[:]"
-    };
-*/
-
     const deleteQuery = function (queries, index) {
+        const state = confirm("Are you sure?");
+        if (state == false) return;
+
         queries.splice(index, 1);
 
         localStorage.queries = JSON.stringify(queries);
@@ -44,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const drawQuery = function (query, index, arr) {
         let block = document.createElement("div");
         block.className = "note";
-        block.index = index;
 
         let removeBtn = document.createElement("div");
         removeBtn.className = "button";
@@ -62,10 +45,10 @@ document.addEventListener("DOMContentLoaded", function () {
             let val_el = document.createElement("span");
             val_el.className = "value";
             val_el.innerHTML = query[key];
-            res.append(val_el);
             val_el.addEventListener("click", (event) => {
                 changeQueryValue(arr, index, key, query[key]);
             });
+            res.append(val_el);
 
             const br_el = document.createElement("br");
             res.append(br_el);
@@ -77,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
         background.append(block);
     }
 
-    const drawInput = function () {
+    const drawInput = function (submitCallback) {
         let block = document.createElement("div");
         block.className = "note";
 
@@ -108,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let background = document.getElementsByClassName("background")[0];
         background.append(block);
 
+        form.addEventListener("submit", submitCallback);
         return form;
     }
 
@@ -140,10 +124,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     initLocalStorage();
 
-    let queries = getQueries();
+    const queries = getQueries();
     queries.forEach(drawQuery);
 
-    let form = drawInput();
-    form.addEventListener("submit", saveFromForm);
+    const form = drawInput(saveFromForm);
 });
 
