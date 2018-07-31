@@ -26,6 +26,10 @@ body {
     min-height: 200px;
 }
 
+.entry{
+    font-size: 16pt;
+}
+
 .background{
     display: block;
     position: relative;

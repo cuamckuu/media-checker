@@ -22,8 +22,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const deleteQuery = function (queries, index) {
         queries.splice(index, 1);
-        localStorage.queries = JSON.stringify(queries);
 
+        localStorage.queries = JSON.stringify(queries);
+        location.reload();
+    }
+
+    const changeValue = function (queries, index, key, old_val){
+        const new_val = prompt("Edit value: ", old_val);
+
+        if (new_val === false || new_val === old_val) return;
+        queries[index][key] = new_val;
+
+        localStorage.queries = JSON.stringify(queries);
         location.reload();
     }
 
@@ -35,15 +45,26 @@ document.addEventListener("DOMContentLoaded", function () {
         let removeBtn = document.createElement("div");
         removeBtn.className = "button";
         removeBtn.innerHTML = "X";
-        removeBtn.addEventListener("click", function(event){deleteQuery(arr, index);});
+        removeBtn.addEventListener("click", event => deleteQuery(arr, index));
         block.append(removeBtn);
 
         let res = document.createDocumentFragment();
         Object.keys(query).forEach((key) => {
-            let row = document.createElement("span");
-            row.innerHTML = `${key.bold()}: ${query[key]} <br>`
+            let key_el = document.createElement("span");
+            key_el.className = "key";
+            key_el.innerHTML = `${key.bold()}: `;
+            res.append(key_el);
 
-            res.append(row);
+            let val_el = document.createElement("span");
+            val_el.className = "value";
+            val_el.innerHTML = query[key];
+            res.append(val_el);
+            val_el.addEventListener("click", (event) => {
+                changeValue(arr, index, key, query[key]);
+            });
+
+            const br_el = document.createElement("br");
+            res.append(br_el);
         });
 
         block.append(res);
